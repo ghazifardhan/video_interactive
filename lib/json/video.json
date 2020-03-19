@@ -1,0 +1,72 @@
+{
+  "data" : [
+    {
+      "url": "https://kriyapeople.s3-ap-southeast-1.amazonaws.com/interactive+video/INTERACTIVE+PROTOTIPE/vr/Vi1.mp4",
+      "hotspot":  false,
+      "area": [
+        {
+          "x": 17.0,
+          "y": 25.0,
+          "height": 20.0,
+          "width": 20.0,
+          "border_radius": 100,
+          "next_videos": 1
+        }
+      ],
+      "next_videos": 1
+    },
+    {
+      "url": "https://kriyapeople.s3-ap-southeast-1.amazonaws.com/interactive+video/INTERACTIVE+PROTOTIPE/vr/Vi2.mp4",
+      "hotspot":  true,
+      "area": [
+        {
+          "x": 17.0,
+          "y": 25.0,
+          "height": 20.0,
+          "width": 20.0,
+          "border_radius": 100.0,
+          "next_videos": 3
+        },
+        {
+          "x": 51.0,
+          "y": 29.0,
+          "height": 20.0,
+          "width": 20.0,
+          "border_radius": 100.0,
+          "next_videos": 2
+        }
+      ],
+      "next_videos": -1
+    },
+    {
+      "url": "https://kriyapeople.s3-ap-southeast-1.amazonaws.com/interactive+video/INTERACTIVE+PROTOTIPE/vr/Vi3.mp4",
+      "hotspot":  false,
+      "area": [
+        {
+          "x": 17.0,
+          "y": 25.0,
+          "height": 20.0,
+          "width": 20.0,
+          "border_radius": 100,
+          "next_videos": 1
+        }
+      ],
+      "next_videos": 1
+    },
+    {
+      "url": "https://kriyapeople.s3-ap-southeast-1.amazonaws.com/interactive+video/INTERACTIVE+PROTOTIPE/vr/Vi5.mp4",
+      "hotspot":  false,
+      "area": [
+        {
+          "x": 17.0,
+          "y": 25.0,
+          "height": 20.0,
+          "width": 20.0,
+          "border_radius": 100,
+          "next_videos": 1
+        }
+      ],
+      "next_videos": -1
+    }
+  ]
+}
