@@ -11,6 +11,10 @@ import 'package:video_player/video_player.dart';
 
 class Video extends StatefulWidget {
 
+  final String from;
+
+  Video({ @required this.from });
+
   @override
   State<StatefulWidget> createState() {
     return _VideoPage();
@@ -31,29 +35,11 @@ class _VideoPage extends State<Video> {
   @override
   void initState() {
     super.initState();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      SystemChrome.setEnabledSystemUIOverlays([]);
-      SystemChrome.setPreferredOrientations(
-          [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
-    });
-
     init();
   }
 
   init() async {
-
-    videoUrls.add("https://kriyapeople.s3-ap-southeast-1.amazonaws.com/interactive+video/INTERACTIVE+PROTOTIPE/vr/Vi1.mp4");
-    videoUrls.add("https://kriyapeople.s3-ap-southeast-1.amazonaws.com/interactive+video/INTERACTIVE+PROTOTIPE/vr/Vi2.mp4");
-    videoUrls.add("https://kriyapeople.s3-ap-southeast-1.amazonaws.com/interactive+video/INTERACTIVE+PROTOTIPE/vr/Vi3.mp4");
-    videoUrls.add("https://kriyapeople.s3-ap-southeast-1.amazonaws.com/interactive+video/INTERACTIVE+PROTOTIPE/vr/Vi5.mp4");
-
-    _interactiveVideoBloc = InteractiveVideoBloc()..add(InitializeInteractiveVideoEvent(videoUrls: videoUrls));
-
-    var test = await getVideos();
-    test.data.forEach((a) {
-      print("url ${a.url}");
-    });
+    _interactiveVideoBloc = InteractiveVideoBloc()..add(InitializeInteractiveVideoEvent(from: widget.from));
   }
 
   Future<InteractiveModel> getVideos() async {
@@ -84,6 +70,19 @@ class _VideoPage extends State<Video> {
           child: BlocBuilder<InteractiveVideoBloc, InteractiveVideoState>(
             builder: (context, state) {
               if (state is InitializedInteractiveVideoState) {
+                if (state.fullscreen) {
+                  WidgetsBinding.instance.addPostFrameCallback((_) {
+                    SystemChrome.setEnabledSystemUIOverlays([]);
+                    SystemChrome.setPreferredOrientations(
+                        [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
+                  });
+                } else {
+                  WidgetsBinding.instance.addPostFrameCallback((_) {
+                    SystemChrome.setPreferredOrientations(
+                        [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+                  });
+                }
+
                 return FutureBuilder(
                   future: state.initializePlayers,
                   builder: (context, snapshot) {
@@ -137,7 +136,6 @@ class _VideoPage extends State<Video> {
                           ),
                           child: InkWell(
                             onTap: () {
-                              print("next video ${area.nextVideos}");
                               _interactiveVideoBloc..add(OnClickHotspotEvent(nextVideo: area.nextVideos));
                             },
                           ),
@@ -157,7 +155,8 @@ class _VideoPage extends State<Video> {
               icon: Icon(CupertinoIcons.play_arrow_solid, size: 25.0,
                 color: Colors.white,),
               onPressed: () {
-                _interactiveVideoBloc..add(PlayInteractiveVideoEvent());
+                print("play ${state.playingIndex}");
+                _interactiveVideoBloc..add(PlayInteractiveVideoEvent(index: state.playingIndex));
               },
             )
         ),
@@ -168,10 +167,31 @@ class _VideoPage extends State<Video> {
               icon: Icon(
                 CupertinoIcons.pause_solid, size: 25.0, color: Colors.white,),
               onPressed: () {
-                _interactiveVideoBloc..add(StopInteractiveVideoEvent());
+                _interactiveVideoBloc..add(StopInteractiveVideoEvent(index: state.playingIndex));
               },
             )
         ),
+        Positioned(
+            bottom: 60.0,
+            left: 20.0,
+            child: IconButton(
+              icon: Icon(
+                CupertinoIcons.fullscreen, size: 25.0, color: Colors.white,),
+              onPressed: () {
+                _interactiveVideoBloc..add(FullscreenVideoEvent());
+              },
+            )
+        ),
+        Positioned(
+          left: 20.0,
+          top: 20.0,
+          child: Text(
+            "Position: ${state.playingIndex}",
+            style: TextStyle(
+              color: Colors.blue
+            ),
+          ),
+        )
       ],
     );
   }

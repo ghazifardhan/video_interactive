@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+
 InteractiveModel videoInteractiveFromJson(String str) => InteractiveModel.fromJson(json.decode(str));
 
 String videoInteractiveToJson(InteractiveModel data) => json.encode(data.toJson());
@@ -25,27 +27,35 @@ class InteractiveModel {
 }
 
 class Datum {
+  GlobalKey key;
   String url;
+  String asset;
   bool hotspot;
   List<Area> area;
   int nextVideos;
 
   Datum({
+    this.key,
     this.url,
+    this.asset,
     this.hotspot,
     this.area,
     this.nextVideos,
   });
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+    key: json["key"] == null ? GlobalKey() : json["key"],
     url: json["url"] == null ? null : json["url"],
+    asset: json["asset"] == null ? null : json["asset"],
     hotspot: json["hotspot"] == null ? null : json["hotspot"],
     area: json["area"] == null ? null : List<Area>.from(json["area"].map((x) => Area.fromJson(x))),
     nextVideos: json["next_videos"] == null ? null : json["next_videos"],
   );
 
   Map<String, dynamic> toJson() => {
+    "key": key == null ? null : key,
     "url": url == null ? null : url,
+    "asset": asset == null ? null : asset,
     "hotspot": hotspot == null ? null : hotspot,
     "area": area == null ? null : List<dynamic>.from(area.map((x) => x.toJson())),
     "next_videos": nextVideos == null ? null : nextVideos,
