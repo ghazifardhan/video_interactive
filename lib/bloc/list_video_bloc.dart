@@ -4,6 +4,9 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:video_interactive/bloc/from.dart';
+import 'package:video_interactive/bloc/video_player/video_player_bloc.dart';
+import 'package:video_interactive/bloc/video_player/video_player_event.dart';
 import 'package:video_interactive/model/interactive_model.dart';
 import 'package:video_player/video_player.dart';
 
@@ -23,6 +26,7 @@ class ChangeVideoPlayerEvent extends ListVideoBlocEvent {
 
   ChangeVideoPlayerEvent({ @required this.playingIndex});
 }
+class AddMoreVideoEvent extends ListVideoBlocEvent {}
 class AddControllerListVideoBlocEvent extends ListVideoBlocEvent {}
 
 // State
@@ -39,16 +43,16 @@ class InitializedListVideoState extends ListVideoBlocState {
 
   final int playingIndex;
   final int count;
-  final VideoPlayerController videoPlayerController;
-  final Future<void> initializePlayers;
   final InteractiveModel model;
+  final VideoPlayerBloc videoPlayerBloc;
+  final List<Datum> datas;
 
   InitializedListVideoState({
     @required this.playingIndex,
     @required this.count,
-    @required this.videoPlayerController,
-    @required this.initializePlayers,
     @required this.model,
+    @required this.videoPlayerBloc,
+    @required this.datas,
   });
 
   InitializedListVideoState copyWith({
@@ -57,13 +61,15 @@ class InitializedListVideoState extends ListVideoBlocState {
     VideoPlayerController videoPlayerController,
     Future<void> initializePlayers,
     InteractiveModel model,
+    VideoPlayerBloc videoPlayerBloc,
+    List<Datum>  datas,
   }) {
     return InitializedListVideoState(
       playingIndex: playingIndex ?? this.playingIndex,
       count: count ?? this.count,
-      videoPlayerController: videoPlayerController ?? this.videoPlayerController,
-      initializePlayers: initializePlayers ?? this.initializePlayers,
       model: model ?? this.model,
+      videoPlayerBloc: videoPlayerBloc ?? this.videoPlayerBloc,
+      datas: datas ?? this.datas,
     );
   }
 
@@ -71,9 +77,9 @@ class InitializedListVideoState extends ListVideoBlocState {
   List<Object> get props => [
     playingIndex,
     count,
-    initializePlayers,
-    videoPlayerController,
     model,
+    videoPlayerBloc,
+    datas,
   ];
 
   @override
@@ -88,28 +94,19 @@ class InitializedListVideoState extends ListVideoBlocState {
 
 class ListVideoBloc extends Bloc<ListVideoBlocEvent, ListVideoBlocState> {
 
-  List<VideoPlayerController> _controllers = new List<VideoPlayerController>();
-  List<Future<void>> _initializePlayers = new List<Future<void>>();
   int _count = 0;
-  VideoPlayerController currentController;
-  Future<void> currentInitializePlayer;
   InteractiveModel videoModel;
+  List<Datum> datas = new List<Datum>();
   int _totalVideos = 0;
   int _playingIndex = 0;
+  VideoPlayerBloc _videoPlayerBloc;
 
   @override
   ListVideoBlocState get initialState => UninitializedListVideoState();
 
   @override
   Future<void> close() {
-    _controllers.forEach((controller) {
-      controller?.pause();
-//      controller?.removeListener(videoListener);
-      controller?.dispose();
-    });
-    currentController?.pause();
-//    currentController?.removeListener(videoListener);
-    currentController?.dispose();
+    _videoPlayerBloc.close();
     return super.close();
   }
 
@@ -118,57 +115,78 @@ class ListVideoBloc extends Bloc<ListVideoBlocEvent, ListVideoBlocState> {
     if (event is InitializeListVideoBlocEvent) {
       videoModel = await getVideos();
       _totalVideos = videoModel.data.length;
-
+      datas = videoModel.data;
 
       videoModel.data.forEach((data) {
         print("key -----> ${data.key}");
-        _controllers.add(VideoPlayerController.asset(data.asset));
       });
 
-      _controllers.asMap().forEach((index, controller) {
-        _initializePlayers.add(controller.initialize());
-      });
-
-      currentController = _controllers[0];
-      currentInitializePlayer = _initializePlayers[0];
-      currentController.setVolume(0.0);
+      _videoPlayerBloc = VideoPlayerBloc(
+        from: From.MY_COURSES, 
+        url: videoModel.data[0].url,
+        interactive: false
+      );
+      _videoPlayerBloc..add(VideoInitializeEvent(
+        autoPlay: true, 
+        fullscreen: false,
+        interactive: null
+      ));
 
       yield InitializedListVideoState(
         playingIndex: _playingIndex,
         count: _count++,
-        videoPlayerController: currentController,
-        initializePlayers: currentInitializePlayer,
-        model: videoModel
+        model: videoModel,
+        videoPlayerBloc: _videoPlayerBloc,
+        datas: datas
       );
     } else if (event is PlayListVideoBlocEvent) {
-      if (event.playingIndex != (state as InitializedListVideoState).playingIndex) {
-        await currentController.setVolume(0.0);
-        await currentController.seekTo(Duration(seconds: 0));
-        await currentController.play();
-
-        yield (state as InitializedListVideoState).copyWith(
-            playingIndex: event.playingIndex,
-//        count: _count++,
-            videoPlayerController: currentController
-        );
-      } else if (event.playingIndex == 0) {
-        await currentController.setVolume(0.0);
-        await currentController.seekTo(Duration(seconds: 0));
-        await currentController.play();
-
-        yield (state as InitializedListVideoState).copyWith(
-            playingIndex: event.playingIndex,
-//        count: _count++,
-            videoPlayerController: currentController
-        );
-      }
-    } else if (event is ChangeVideoPlayerEvent) {
-      currentController = _controllers[event.playingIndex];
-      currentInitializePlayer = _initializePlayers[event.playingIndex];
-
-      add(PlayListVideoBlocEvent(
-        playingIndex: event.playingIndex
+      _videoPlayerBloc = VideoPlayerBloc(from: From.MY_COURSES, url: videoModel.data[event.playingIndex].url, interactive: false);
+      _videoPlayerBloc..add(VideoInitializeEvent(
+        autoPlay: true, 
+        fullscreen: false,
+        interactive: null
       ));
+
+      yield (state as InitializedListVideoState).copyWith(
+        playingIndex: event.playingIndex,
+        videoPlayerBloc: _videoPlayerBloc,
+        count: _count++,
+      );
+    } else if (event is ChangeVideoPlayerEvent) {
+      if (event.playingIndex != (state as InitializedListVideoState).playingIndex) {
+        if (_videoPlayerBloc != null) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            _videoPlayerBloc..add(UninitializedVideoPlayerEvent());
+            
+            Future.delayed(Duration(seconds: 2), () {
+              final oldPlayer = _videoPlayerBloc;
+              oldPlayer.close();
+              print("mantap gan addPostFrameCallback");
+              add(PlayListVideoBlocEvent(playingIndex: event.playingIndex));
+            });
+          });
+
+          yield (state as InitializedListVideoState).copyWith(
+            playingIndex: event.playingIndex,
+            count: _count
+          );
+          
+          // _videoPlayerBloc = null;
+
+          
+
+          // Future.delayed(Duration(seconds: 2), () {
+          //   add(PlayListVideoBlocEvent(playingIndex: event.playingIndex));
+          // });
+        }
+      }
+    } else if (event is AddMoreVideoEvent) {
+      var newModel = await getVideos();
+      datas.addAll(newModel.data);
+
+      yield (state as InitializedListVideoState).copyWith(
+        datas: datas
+      );
     }
   }
 

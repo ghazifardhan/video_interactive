@@ -1,76 +1,101 @@
 {
-  "data" : [
-    {
-      "url": "https://kriyapeople.s3-ap-southeast-1.amazonaws.com/interactive+video/INTERACTIVE+PROTOTIPE/vr/Vi1.mp4",
-      "asset": "lib/videos/Vi1.mp4",
-      "hotspot":  false,
-      "area": [
-        {
-          "x": 17.0,
-          "y": 25.0,
-          "height": 20.0,
-          "width": 20.0,
-          "border_radius": 100,
-          "next_videos": 1
-        }
-      ],
-      "next_videos": 1
-    },
-    {
-      "url": "https://kriyapeople.s3-ap-southeast-1.amazonaws.com/interactive+video/INTERACTIVE+PROTOTIPE/vr/Vi2.mp4",
-      "asset": "lib/videos/Vi2.mp4",
-      "hotspot":  true,
-      "area": [
-        {
-          "x": 17.0,
-          "y": 25.0,
-          "height": 20.0,
-          "width": 20.0,
-          "border_radius": 100.0,
-          "next_videos": 3
-        },
-        {
-          "x": 51.0,
-          "y": 29.0,
-          "height": 20.0,
-          "width": 20.0,
-          "border_radius": 100.0,
-          "next_videos": 2
-        }
-      ],
-      "next_videos": -1
-    },
-    {
-      "url": "https://kriyapeople.s3-ap-southeast-1.amazonaws.com/interactive+video/INTERACTIVE+PROTOTIPE/vr/Vi3.mp4",
-      "asset": "lib/videos/Vi3.mp4",
-      "hotspot":  false,
-      "area": [
-        {
-          "x": 17.0,
-          "y": 25.0,
-          "height": 20.0,
-          "width": 20.0,
-          "border_radius": 100,
-          "next_videos": 1
-        }
-      ],
-      "next_videos": 1
-    },
-    {
-      "url": "https://kriyapeople.s3-ap-southeast-1.amazonaws.com/interactive+video/INTERACTIVE+PROTOTIPE/vr/Vi5.mp4",
-      "asset": "lib/videos/Vi5.mp4",
-      "hotspot":  false,
-      "area": [
-        {
-          "x": 17.0,
-          "y": 25.0,
-          "height": 20.0,
-          "width": 20.0,
-          "border_radius": 100,
-          "next_videos": 1
-        }
-      ],
-      "next_videos": -1
-    }
-  ]
+  "id": "2f5f9ca0-c8a1-414f-b9ee-e72073a996ea",
+  "blocks": [
+      {
+          "type": "Video Interactive",
+          "content": {
+              "interactive": [
+                  {
+                      "key": "start",
+                      "name": "CORE VALUES BE A PRO INTRO.mp4",
+                      "state": "next",
+                      "hotspots": [],
+                      "next_obj": "OBJ1"
+                  },
+                  {
+                      "key": "OBJ1",
+                      "name": "CORE VALUES BE A PRO OPTION.mp4",
+                      "state": "pause",
+                      "hotspots": [
+                          {
+                              "top": 59.74842767295597,
+                              "left": 12.743362831858407,
+                              "name": "Hotspot 1",
+                              "width": 21.5929203539823,
+                              "height": 20.754716981132077,
+                              "next_obj": "OBJ2",
+                              "milisecond": 5243.079
+                          },
+                          {
+                              "top": 60.37735849056604,
+                              "left": 39.469026548672566,
+                              "name": "Hotspot 2",
+                              "width": 22.123893805309734,
+                              "height": 19.81132075471698,
+                              "next_obj": "OBJ3",
+                              "milisecond": 7907.508
+                          },
+                          {
+                              "top": 61.94968553459119,
+                              "left": 66.54867256637168,
+                              "name": "Hotspot 3",
+                              "width": 21.061946902654867,
+                              "height": 17.61006289308176,
+                              "next_obj": "OBJ4",
+                              "milisecond": 7907.508
+                          }
+                      ],
+                      "next_obj": ""
+                  },
+                  {
+                      "key": "OBJ2",
+                      "name": "CORE VALUES BE A PRO CHOICE A.mp4",
+                      "state": "next",
+                      "hotspots": [],
+                      "next_obj": "OBJ5"
+                  },
+                  {
+                      "key": "OBJ3",
+                      "name": "CORE VALUES BE A PRO CHOICE B.mp4",
+                      "state": "stop",
+                      "hotspots": [],
+                      "next_obj": ""
+                  },
+                  {
+                      "key": "OBJ4",
+                      "name": "CORE VALUES BE A PRO CHOICE C.mp4",
+                      "state": "next",
+                      "hotspots": [],
+                      "next_obj": "OBJ6"
+                  },
+                  {
+                      "key": "OBJ5",
+                      "name": "CORE VALUES BE A PRO CHOICE A TRANS.mp4",
+                      "state": "next",
+                      "hotspots": [],
+                      "next_obj": "OBJ1"
+                  },
+                  {
+                      "key": "OBJ6",
+                      "name": "CORE VALUES BE A PRO CHOICE C TRANS.mp4",
+                      "state": "next",
+                      "hotspots": [],
+                      "next_obj": "OBJ1"
+                  }
+              ]
+          }
+      }
+  ],
+  "answers": {},
+  "assets": {
+      "CORE VALUES BE A PRO INTRO.mp4": "https://s3-ap-southeast-1.amazonaws.com//kriyapeople/86b7e43b-aaee-44ee-a03c-cc76b58354fe",
+      "CORE VALUES BE A PRO OPTION.mp4": "https://s3-ap-southeast-1.amazonaws.com//kriyapeople/7169f746-d927-453e-a8ea-9d65ea0e646b",
+      "CORE VALUES BE A PRO CHOICE A.mp4": "https://s3-ap-southeast-1.amazonaws.com//kriyapeople/12a10cbb-ed8f-4536-b6c2-372c46815369",
+      "CORE VALUES BE A PRO CHOICE B.mp4": "https://s3-ap-southeast-1.amazonaws.com//kriyapeople/38f30d7b-17b1-4257-89ce-3ab87ec2474f",
+      "CORE VALUES BE A PRO CHOICE C.mp4": "https://s3-ap-southeast-1.amazonaws.com//kriyapeople/4ad902c1-39c6-4f27-a577-e236b522184b",
+      "CORE VALUES BE A PRO CHOICE A TRANS.mp4": "https://s3-ap-southeast-1.amazonaws.com//kriyapeople/7513d2dc-85b1-493c-8f8d-0d0bdb30c54c",
+      "CORE VALUES BE A PRO CHOICE C TRANS.mp4": "https://s3-ap-southeast-1.amazonaws.com//kriyapeople/e1003a9d-9553-48b8-adca-d0d819143988"
+  },
+  "number": 1,
+  "lesson_id": "1d109f96-bbe2-4892-959e-21784e1d95df"
 }

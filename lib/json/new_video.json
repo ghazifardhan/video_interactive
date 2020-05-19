@@ -1,0 +1,101 @@
+{
+    "id": "6d07db4f-be6b-49b5-9932-486e795c2ec1",
+    "blocks": [
+        {
+            "type": "Video Interactive",
+            "content": {
+                "interactive": [
+                    {
+                        "key": "start",
+                        "name": "CORE VALUES BE A PRO INTRO.mp4",
+                        "state": "next",
+                        "hotspots": [],
+                        "next_obj": "OBJ1"
+                    },
+                    {
+                        "key": "OBJ1",
+                        "name": "CORE VALUES BE A PRO OPTION.mp4",
+                        "state": "pause",
+                        "hotspots": [
+                            {
+                                "top": 61.63522012578616,
+                                "left": 11.858407079646017,
+                                "name": "Hotspot 1",
+                                "width": 23.008849557522122,
+                                "height": 18.867924528301888,
+                                "next_obj": "OBJ2",
+                                "milisecond": 4323.908
+                            },
+                            {
+                                "top": 61.63522012578616,
+                                "left": 38.4070796460177,
+                                "name": "Hotspot 2",
+                                "width": 23.1858407079646,
+                                "height": 19.81132075471698,
+                                "next_obj": "OBJ3",
+                                "milisecond": 4323.908
+                            },
+                            {
+                                "top": 62.264150943396224,
+                                "left": 66.90265486725664,
+                                "name": "Hotspot 3",
+                                "width": 22.477876106194692,
+                                "height": 19.18238993710692,
+                                "next_obj": "OBJ4",
+                                "milisecond": 4323.908
+                            }
+                        ],
+                        "next_obj": ""
+                    },
+                    {
+                        "key": "OBJ2",
+                        "name": "CORE VALUES BE A PRO CHOICE A.mp4",
+                        "state": "next",
+                        "hotspots": [],
+                        "next_obj": "OBJ5"
+                    },
+                    {
+                        "key": "OBJ3",
+                        "name": "CORE VALUES BE A PRO CHOICE B.mp4",
+                        "state": "stop",
+                        "hotspots": [],
+                        "next_obj": ""
+                    },
+                    {
+                        "key": "OBJ4",
+                        "name": "CORE VALUES BE A PRO CHOICE C.mp4",
+                        "state": "next",
+                        "hotspots": [],
+                        "next_obj": "OBJ6"
+                    },
+                    {
+                        "key": "OBJ5",
+                        "name": "CORE VALUES BE A PRO CHOICE A TRANS.mp4",
+                        "state": "next",
+                        "hotspots": [],
+                        "next_obj": "OBJ1"
+                    },
+                    {
+                        "key": "OBJ6",
+                        "name": "CORE VALUES BE A PRO CHOICE C TRANS.mp4",
+                        "state": "next",
+                        "hotspots": [],
+                        "next_obj": "OBJ1"
+                    }
+                ]
+            }
+        }
+    ],
+    "answers": {},
+    "assets": {
+        "CORE VALUES BE A PRO INTRO.mp4": "/storage/emulated/0/Android/data/com.ghazi.video_interactive/files/c759f88e-73a2-45e2-be69-9389df82e7b7.mp4",
+        "CORE VALUES BE A PRO OPTION.mp4": "/storage/emulated/0/Android/data/com.ghazi.video_interactive/files/1ce7172f-b56f-4764-9c5e-622ead4992b5.mp4",
+        "CORE VALUES BE A PRO CHOICE A.mp4": "/storage/emulated/0/Android/data/com.ghazi.video_interactive/files/847c641d-7412-46a6-b89d-d08f7c8f8d09.mp4",
+        "CORE VALUES BE A PRO CHOICE B.mp4": "/storage/emulated/0/Android/data/com.ghazi.video_interactive/files/ad12feff-62f9-4998-9ab6-2f1a846578c5.mp4",
+        "CORE VALUES BE A PRO CHOICE C.mp4": "/storage/emulated/0/Android/data/com.ghazi.video_interactive/files/1199f42e-42df-4674-9199-f722b0b1df91.mp4",
+        "CORE VALUES BE A PRO CHOICE A TRANS.mp4": "/storage/emulated/0/Android/data/com.ghazi.video_interactive/files/f19739c9-4af9-4861-8465-0648b0396a86.mp4",
+        "CORE VALUES BE A PRO CHOICE C TRANS.mp4": "/storage/emulated/0/Android/data/com.ghazi.video_interactive/files/f19739c9-4af9-4861-8465-0648b0396a86.mp4"
+    },
+    "number": 1,
+    "lesson_id": "3e058b1f-bfa9-4f10-bb83-977b523b12ba"
+}

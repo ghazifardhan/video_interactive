@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:video_interactive/bloc/from.dart';
 import 'package:video_interactive/bloc/list_video_bloc.dart';
 import 'package:video_interactive/bloc/scroll_bloc.dart';
+import 'package:video_interactive/widget/video/kriya_video.dart';
 import 'package:video_player/video_player.dart';
 
 class ListVideo extends StatefulWidget {
@@ -81,43 +83,57 @@ class _ChildListVideoPage extends State<ChildListVideo> {
     _scrollBloc = BlocProvider.of<ScrollBloc>(context);
   }
 
-  scrollController(InitializedListVideoState state) {
-    state.model.data.asMap().forEach((k, v) {
+  @override
+  void dispose() {
+    _listVideoBloc.close();
+    _scrollBloc.close();
+    super.dispose();
+  }
 
-      double offset = MediaQuery.of(context).size.height / 3;
-      RenderBox box = v.key.currentContext.findRenderObject();
-      Offset position = box.localToGlobal(Offset.zero); //
-      double y = position.dy;
+  scrollController(ScrollReadyState state) {
+    print("mantap gan ${_listVideoBloc.datas.length}");
+    _listVideoBloc.datas.asMap().forEach((k, v){
+          double offset = MediaQuery.of(context).size.height / 3;
+          WidgetsBinding.instance.addPostFrameCallback((_){
+            RenderBox box = v.key.currentContext.findRenderObject();
+            Offset position = box.localToGlobal(Offset.zero); //
+            double y = position.dy;
 
-      if (y >= -25 && y < offset) {
-        print("${v.url} ${v.key} load");
-        _listVideoBloc..add(ChangeVideoPlayerEvent(playingIndex: k));
-//        v.key.currentState.playVideo();
-      }
-      else {
-        print("${v.url} ${v.key} unload");
-//        v.key.currentState.pauseVideo();
-      }
+            if (y >= -25 && y < offset) {
+              print("${v.url} ${v.key} load");
+              _listVideoBloc..add(ChangeVideoPlayerEvent(playingIndex: k));
+      //        v.key.currentState.playVideo();
+            }
+            else {
+              // print("${v.url} ${v.key} unload");
+      //        v.key.currentState.pauseVideo();
+            }
+          });
     });
+
+    final maxScroll = state.scrollNotification.metrics.maxScrollExtent;
+    final currentScroll = state.scrollNotification.metrics.pixels;
+    if (maxScroll - currentScroll <= 0) {
+      print("add more gan");
+      _listVideoBloc..add(AddMoreVideoEvent());
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ListVideoBloc, ListVideoBlocState>(
-      builder: (BuildContext context, ListVideoBlocState state) {
-        return BlocBuilder<ScrollBloc, ScrollState>(
-          builder: (BuildContext context, ScrollState scrollState) {
+    return BlocBuilder<ScrollBloc, ScrollState>(
+      builder: (BuildContext context, ScrollState scrollState) {
+        if (scrollState is ScrollReadyState) {
+          scrollController(scrollState);
+        }
+        return BlocBuilder<ListVideoBloc, ListVideoBlocState>(
+          builder: (BuildContext context, ListVideoBlocState state) {
             if (state is InitializedListVideoState) {
-              if (scrollState is ScrollReadyState) {
-                print("count ${state.count} playingIndex ${state.playingIndex}");
-                scrollController(state);
-              }
               return videos(state);
             }
             return Container();
           },
         );
-
       },
     );
   }
@@ -125,7 +141,7 @@ class _ChildListVideoPage extends State<ChildListVideo> {
   Widget videos(InitializedListVideoState state) {
     return ListView.separated(
       shrinkWrap: true,
-      itemCount: state.model.data.length,
+      itemCount: state.datas.length,
       separatorBuilder: (context, index) {
         return Container(height: 10.0,);
       },
@@ -133,22 +149,18 @@ class _ChildListVideoPage extends State<ChildListVideo> {
         return Padding(
           padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
           child: Container(
-            key: state.model.data[index].key,
+            key: state.datas[index].key,
             height: 200.0,
             color: Colors.grey,
             child: state.playingIndex == index
                 ?
-                FutureBuilder(
-                  future: state.initializePlayers,
-                  builder: (context, snapshot) {
-                    print("connecton ${snapshot.connectionState}");
-                    if (snapshot.connectionState == ConnectionState.done) {
-                      return VideoPlayer(state.videoPlayerController);
-                    }
-                    return Container(child: Text("Video Unload"),);
-                  },
+                KriyaPlayer(
+                  key: Key(index.toString()),
+                  videoBloc: state.videoPlayerBloc, 
+                  fullscreen: false, 
+                  from: From.MY_COURSES
                 )
-                : Container(child: Text("Video Unload"),)
+                : Container(child: Text("Video Unload ${state.datas[index].key}"),)
           ),
         );
       },

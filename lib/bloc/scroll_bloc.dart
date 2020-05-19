@@ -71,7 +71,7 @@ class ScrollBloc extends Bloc<ScrollEvent, ScrollState> {
     if (event is ScrollAttachedEvent) {
       if (state is ScrollUnreadyState) {
 
-        print(event.scrollNotification);
+        // print(event.scrollNotification);
 
         yield ScrollReadyState(
           scrollNotification: event.scrollNotification,
@@ -79,7 +79,7 @@ class ScrollBloc extends Bloc<ScrollEvent, ScrollState> {
         );
       } else {
 
-        print(event.scrollNotification);
+        // print(event.scrollNotification);
 
         yield (state as ScrollReadyState).copyWith(
           scrollNotification: event.scrollNotification,

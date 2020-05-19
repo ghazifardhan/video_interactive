@@ -2,9 +2,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:video_interactive/interactive/chewie_test.dart';
+import 'package:video_interactive/interactive/download_file.dart';
+import 'package:video_interactive/interactive/new_interactive.dart';
+import 'package:video_interactive/interactive/new_interactive_v2.dart';
+import 'package:video_interactive/interactive/new_video.dart';
 import 'package:video_interactive/interactive/video.dart';
 import 'package:video_interactive/list_video/list_video.dart';
+import 'package:video_interactive/list_video/list_video_new.dart';
 import 'package:video_interactive/simple_bloc_delegate.dart';
+
+import 'interactive/video_quality.dart';
 
 void main() {
   BlocSupervisor.delegate = SimpleBlocDelegate();
@@ -68,7 +76,22 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+
+
+    SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+    ]);
+  }
+
+  @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -86,13 +109,37 @@ class _MyHomePageState extends State<MyHomePage> {
             CupertinoButton(
               child: Text("Video Interactive from Asset"),
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Video(from: "asset")));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => NewInteractive()));
+              },
+            ),
+            CupertinoButton(
+              child: Text("Video Interactive V2"),
+              onPressed: () {
+                Navigator.push(context, CupertinoPageRoute(builder: (context) => NewInteractiveV2()));
               },
             ),
             CupertinoButton(
               child: Text("List Video"),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => ListVideo()));
+              },
+            ),
+            CupertinoButton(
+              child: Text("Chewie Video"),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ChewieTest()));
+              },
+            ),
+            CupertinoButton(
+              child: Text("Download Page"),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => DownloadFile()));
+              },
+            ),
+            CupertinoButton(
+              child: Text("Video Quality"),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => VideoQuality()));
               },
             ),
           ],

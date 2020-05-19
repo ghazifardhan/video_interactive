@@ -1,0 +1,221 @@
+{
+    "id": "dd0590a3-4d7b-43b7-87fe-6a26f27cca41",
+    "blocks": [
+        {
+            "type": "Video Interactive",
+            "content": {
+                "interactive": [
+                    {
+                        "key": "start",
+                        "name": "INTRO - BE A PRO.mp4",
+                        "state": "next",
+                        "hotspots": [],
+                        "next_obj": "OBJ1"
+                    },
+                    {
+                        "key": "OBJ1",
+                        "name": "OPTION - BE A PRO.mp4",
+                        "state": "pause",
+                        "hotspots": [
+                            {
+                                "top": 61.94968553459119,
+                                "left": 11.68141592920354,
+                                "name": "Hotspot 1",
+                                "width": 23.1858407079646,
+                                "height": 17.29559748427673,
+                                "next_obj": "OBJ2",
+                                "milisecond": 4676.713000000001
+                            },
+                            {
+                                "top": 61.94968553459119,
+                                "left": 39.469026548672566,
+                                "name": "Hotspot 2",
+                                "width": 23.008849557522122,
+                                "height": 17.61006289308176,
+                                "next_obj": "OBJ3",
+                                "milisecond": 4676.713000000001
+                            },
+                            {
+                                "top": 62.893081761006286,
+                                "left": 67.07964601769912,
+                                "name": "Hotspot 3",
+                                "width": 21.5929203539823,
+                                "height": 16.352201257861633,
+                                "next_obj": "OBJ4",
+                                "milisecond": 4676.713000000001
+                            }
+                        ],
+                        "next_obj": ""
+                    },
+                    {
+                        "key": "OBJ2",
+                        "name": "CHOICE A - BE A PRO.mp4",
+                        "state": "next",
+                        "hotspots": [],
+                        "next_obj": "OBJ1"
+                    },
+                    {
+                        "key": "OBJ3",
+                        "name": "CHOICE B - BE A PRO.mp4",
+                        "state": "next",
+                        "hotspots": [],
+                        "next_obj": "OBJ5"
+                    },
+                    {
+                        "key": "OBJ4",
+                        "name": "CHOICE C - BE A PRO.mp4",
+                        "state": "next",
+                        "hotspots": [],
+                        "next_obj": "OBJ1"
+                    },
+                    {
+                        "key": "OBJ5",
+                        "name": "INTRO - BE GENEROUS.mp4",
+                        "state": "next",
+                        "hotspots": [],
+                        "next_obj": "OBJ6"
+                    },
+                    {
+                        "key": "OBJ6",
+                        "name": "OPTION - BE GENEROUS.mp4",
+                        "state": "pause",
+                        "hotspots": [
+                            {
+                                "top": 62.57861635220125,
+                                "left": 15.04424778761062,
+                                "name": "Hotspot 1",
+                                "width": 19.82300884955752,
+                                "height": 16.037735849056602,
+                                "next_obj": "OBJ7",
+                                "milisecond": 4829.776
+                            },
+                            {
+                                "top": 62.893081761006286,
+                                "left": 38.4070796460177,
+                                "name": "Hotspot 2",
+                                "width": 23.893805309734514,
+                                "height": 15.40880503144654,
+                                "next_obj": "OBJ8",
+                                "milisecond": 4829.776
+                            },
+                            {
+                                "top": 63.20754716981132,
+                                "left": 67.2566371681416,
+                                "name": "Hotspot 3",
+                                "width": 20.530973451327434,
+                                "height": 14.465408805031446,
+                                "next_obj": "OBJ9",
+                                "milisecond": 4829.776
+                            }
+                        ],
+                        "next_obj": ""
+                    },
+                    {
+                        "key": "OBJ7",
+                        "name": "CHOICE A - BE GENEROUS.mp4",
+                        "state": "next",
+                        "hotspots": [],
+                        "next_obj": "OBJ6"
+                    },
+                    {
+                        "key": "OBJ8",
+                        "name": "CHOICE B - BE GENEROUS.mp4",
+                        "state": "next",
+                        "hotspots": [],
+                        "next_obj": "OBJ6"
+                    },
+                    {
+                        "key": "OBJ9",
+                        "name": "CHOICE C - BE GENEROUS.mp4",
+                        "state": "next",
+                        "hotspots": [],
+                        "next_obj": "OBJ10"
+                    },
+                    {
+                        "key": "OBJ10",
+                        "name": "INTRO - BE KIND.mp4",
+                        "state": "next",
+                        "hotspots": [],
+                        "next_obj": "OBJ11"
+                    },
+                    {
+                        "key": "OBJ11",
+                        "name": "OPTIONAL - BE KIND.mp4",
+                        "state": "pause",
+                        "hotspots": [
+                            {
+                                "top": 62.57861635220125,
+                                "left": 14.867256637168142,
+                                "name": "Hotspot 1",
+                                "width": 20,
+                                "height": 15.723270440251572,
+                                "next_obj": "OBJ12",
+                                "milisecond": 3730.99
+                            },
+                            {
+                                "top": 62.57861635220125,
+                                "left": 38.4070796460177,
+                                "name": "Hotspot 2",
+                                "width": 24.778761061946902,
+                                "height": 15.723270440251572,
+                                "next_obj": "OBJ13",
+                                "milisecond": 3730.99
+                            },
+                            {
+                                "top": 62.264150943396224,
+                                "left": 67.07964601769912,
+                                "name": "Hotspot 3",
+                                "width": 19.646017699115045,
+                                "height": 16.037735849056602,
+                                "next_obj": "OBJ14",
+                                "milisecond": 3730.99
+                            }
+                        ],
+                        "next_obj": ""
+                    },
+                    {
+                        "key": "OBJ12",
+                        "name": "CHOICE A - BE KIND.mp4",
+                        "state": "stop",
+                        "hotspots": [],
+                        "next_obj": ""
+                    },
+                    {
+                        "key": "OBJ13",
+                        "name": "CHOICE B - BE KIND.mp4",
+                        "state": "next",
+                        "hotspots": [],
+                        "next_obj": "OBJ11"
+                    },
+                    {
+                        "key": "OBJ14",
+                        "name": "CHOICE C - BE KIND.mp4",
+                        "state": "next",
+                        "hotspots": [],
+                        "next_obj": "OBJ11"
+                    }
+                ]
+            }
+        }
+    ],
+    "answers": {},
+    "assets": {
+        "INTRO - BE KIND.mp4": "https://s3-ap-southeast-1.amazonaws.com//kriyapeople/9cd43008-73da-49f9-9abf-de5e3859708c",
+        "INTRO - BE A PRO.mp4": "https://s3-ap-southeast-1.amazonaws.com//kriyapeople/94b52d33-a967-4432-a46f-fb1c9ef6a127",
+        "OPTION - BE A PRO.mp4": "https://s3-ap-southeast-1.amazonaws.com//kriyapeople/6511fcec-3cb8-4995-81e0-cb6ba70875a7",
+        "CHOICE A - BE KIND.mp4": "https://s3-ap-southeast-1.amazonaws.com//kriyapeople/bb906d0e-fe3d-4c1d-8b80-ecace2e2fe1f",
+        "CHOICE B - BE KIND.mp4": "https://s3-ap-southeast-1.amazonaws.com//kriyapeople/9fa979c6-ec03-4580-8b5e-946ed92c31c1",
+        "CHOICE C - BE KIND.mp4": "https://s3-ap-southeast-1.amazonaws.com//kriyapeople/1fcf274a-72c5-4305-9df3-23a192a61021",
+        "OPTIONAL - BE KIND.mp4": "https://s3-ap-southeast-1.amazonaws.com//kriyapeople/bbaa18a8-a2f3-4c3d-88b3-a3f1eaf80cec",
+        "CHOICE A - BE A PRO.mp4": "https://s3-ap-southeast-1.amazonaws.com//kriyapeople/aa8c6ca7-8c9b-42b3-b8c4-fa4e1dce426e",
+        "CHOICE B - BE A PRO.mp4": "https://s3-ap-southeast-1.amazonaws.com//kriyapeople/e29c8d76-3270-47fa-a731-42f00d240717",
+        "CHOICE C - BE A PRO.mp4": "https://s3-ap-southeast-1.amazonaws.com//kriyapeople/f2825500-0266-489e-a978-d3fa9e1ae5bf",
+        "INTRO - BE GENEROUS.mp4": "https://s3-ap-southeast-1.amazonaws.com//kriyapeople/df604bc6-2145-4a05-941b-d08956391347",
+        "OPTION - BE GENEROUS.mp4": "https://s3-ap-southeast-1.amazonaws.com//kriyapeople/499af0d1-783b-45d6-9498-6a0efe2f36ae",
+        "CHOICE A - BE GENEROUS.mp4": "https://s3-ap-southeast-1.amazonaws.com//kriyapeople/764dbc57-d33a-4190-9806-4c356c86f463",
+        "CHOICE B - BE GENEROUS.mp4": "https://s3-ap-southeast-1.amazonaws.com//kriyapeople/7532fa00-8d38-487b-9023-0f7d7c9fed6a",
+        "CHOICE C - BE GENEROUS.mp4": "https://s3-ap-southeast-1.amazonaws.com//kriyapeople/1b7f8038-2c3c-4326-93f3-9e0b970e00ac"
+    },
+    "number": 1,
+    "lesson_id": "56c9725c-1c48-469f-a286-fa9c7fed06d8"
+}
